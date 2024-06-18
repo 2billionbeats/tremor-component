@@ -1,20 +1,15 @@
-import { DataBar } from '@/components/DataBar/DataBar';
+import { Bar } from "@/components/Bar/Bar";
 
 export default function Home({}) {
-	return (
-		<>
-			<div className="w-1/2 flex flex-col space-y-10">
-				<h1 className="text-white text-lg">有上下限</h1>
-				<DataBar cursor={150} lowerLimit={70} upperLimit={180} />
+  return (
+    <>
+      <div className="flex w-1/2 flex-col space-y-10">
+        <h1 className="text-lg text-white">有上下限</h1>
+        <Bar max={17.4} min={12.5} cursor={14} />
+        <Bar max={25} min={26} cursor={25.1} />
 
-				<DataBar cursor={7.46} lowerLimit={7.35} upperLimit={7.45} mode="magnify" />
-
-				<h1 className="text-white text-lg">只有下限</h1>
-				<DataBar cursor={17.9} lowerLimit={17} />
-
-				<h1 className="text-white text-lg">只有上限</h1>
-				<DataBar cursor={17.9} upperLimit={17} />
-			</div>
-		</>
-	);
+        <Bar max={30} min={10} cursor={39} />
+      </div>
+    </>
+  );
 }

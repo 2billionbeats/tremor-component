@@ -27,7 +27,7 @@ export function DataBar({
 				<div className="space-y-3">
 					<Card className="max-w-sm">
 						<CategoryBar
-							showLabels={false}
+							// showLabels={false}
 							values={values}
 							colors={['orange', 'yellow', 'green', 'yellow', 'orange']}
 							markerValue={markerValue}
