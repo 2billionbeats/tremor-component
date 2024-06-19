@@ -5,28 +5,33 @@ export default function Home({}) {
   return (
     <>
       <div className="flex w-1/2 flex-col space-y-10">
-        <h1 className="text-lg text-white">中等差距 不超出边界</h1>
         <Card>
-          <Bar max={17.4} min={12.5} cursor={14} />
+          <div className="flex justify-between pb-5 text-lg text-black">
+            <p className="font-bold">成人外周血白细胞计数</p>
+            <p className="font-bold">
+              6.3
+              <span className="pl-1 font-light">AU/ml</span>
+            </p>
+          </div>
+
+          <Bar
+            max={9.5}
+            min={3.5}
+            cursor={6.3}
+            precision={1}
+            className="px-4"
+          />
         </Card>
 
-        <h1 className="text-lg text-white">微小差距 不超出边界</h1>
         <Card>
-          <Bar max={26} min={25} cursor={25.1} />
-        </Card>
+          <div className="flex justify-between pb-5 text-lg text-black">
+            <p className="font-bold">人体血小板</p>
+            <p className="font-bold">
+              100<span className="pl-1 font-light">AU/ml</span>
+            </p>
+          </div>
 
-        <h1 className="text-lg text-white">大差距 不超出边界</h1>
-        <Card>
-          <Bar max={30} min={10} cursor={39} />
-        </Card>
-
-        <h1 className="text-lg text-white">微小差距 超出边界</h1>
-        <Card>
-          <Bar max={3} min={2} cursor={4} />
-        </Card>
-
-        <Card>
-          <Bar max={3} min={2} cursor={10} />
+          <Bar max={30} min={10} cursor={100} precision={1} className="px-4" />
         </Card>
       </div>
     </>
