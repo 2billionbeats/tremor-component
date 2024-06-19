@@ -1,11 +1,6 @@
-function formatNumberToPrecision(value: number, decimals: number) {
-  if (value < 0) {
-    return "极小";
-  }
-  return value.toFixed(decimals);
-}
+import { formatNumberToPrecision } from "../util";
 
-export function Bar({
+export function DoubleLimitBar({
   min,
   max,
   cursor,
