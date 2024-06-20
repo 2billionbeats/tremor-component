@@ -23,7 +23,7 @@ function SingleLimitBarMin({
               {formatNumberToPrecision(0, precision)}
             </span>
           </div>
-          <div className="relative h-2 w-1/4 bg-yellow-500">
+          <div className="relative h-2 w-1/4 bg-orange-500">
             <span className="absolute -left-3 -top-5 text-xs text-[#70757e]">
               {formatNumberToPrecision(min! / 2, precision)}
             </span>
@@ -42,11 +42,7 @@ function SingleLimitBarMin({
             style={{
               left: isOverrun ? "90%" : `${percentage}%`,
               backgroundColor:
-                percentage < 25
-                  ? "rgb(249 115 22)"
-                  : percentage < 50
-                    ? " rgb(234 179 8)"
-                    : "rgb(34 197 94)",
+                percentage < 50 ? " rgb(249 115 22)" : "rgb(34 197 94)",
             }}
           >
             <div className="absolute -left-7 -top-10 hidden items-center justify-center rounded-lg border border-[#797a7c72] bg-white px-4 py-1 not-italic text-[#70757e] shadow-lg group-hover:flex">
@@ -85,7 +81,7 @@ function SingleLimitBarMax({
               {formatNumberToPrecision(0, precision)}
             </span>
           </div>
-          <div className="relative h-2 w-1/4 bg-yellow-500">
+          <div className="relative h-2 w-1/4 bg-orange-500">
             <span className="absolute -left-3 -top-5 text-xs text-[#70757e]">
               {formatNumberToPrecision(max, precision)}
             </span>
@@ -100,11 +96,7 @@ function SingleLimitBarMax({
             style={{
               left: isOverrun ? "90%" : `${percentage}%`,
               backgroundColor:
-                percentage < 50
-                  ? "rgb(34 197 94)"
-                  : percentage < 75
-                    ? " rgb(234 179 8)"
-                    : "rgb(249 115 22)",
+                percentage < 50 ? "rgb(34 197 94)" : "rgb(249 115 22)",
             }}
           >
             <div className="absolute -left-7 -top-10 hidden items-center justify-center rounded-lg border border-[#797a7c72] bg-white px-4 py-1 not-italic text-[#70757e] shadow-lg group-hover:flex">

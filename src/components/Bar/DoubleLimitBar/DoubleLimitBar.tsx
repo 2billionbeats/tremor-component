@@ -40,7 +40,7 @@ export function DoubleLimitBar({
               )}
             </span>
           </div>
-          <div className="relative h-2 w-[12.5%] bg-yellow-500">
+          <div className="relative h-2 w-[12.5%] bg-orange-500">
             <span className="absolute -left-3 -top-5 text-xs text-[#70757e]">
               {formatNumberToPrecision(
                 !isOverrun ? min - gap : min - 12.5 / percentagePerCount,
@@ -60,7 +60,7 @@ export function DoubleLimitBar({
               {formatNumberToPrecision(min, precision)}
             </span>
           </div>
-          <div className="relative h-2 w-[12.5%] bg-yellow-500">
+          <div className="relative h-2 w-[12.5%] bg-orange-500">
             <span className="absolute -left-3 -top-5 text-xs text-[#70757e]">
               {formatNumberToPrecision(max, precision)}
             </span>
@@ -101,11 +101,9 @@ export function DoubleLimitBar({
                   ? "90%"
                   : "10%",
               backgroundColor:
-                percentage < 12.5 || percentage > 87.5
-                  ? "rgb(249 115 22)"
-                  : percentage < 25 || percentage > 75
-                    ? " rgb(234 179 8)"
-                    : "rgb(34 197 94)",
+                percentage < 25 || percentage > 75
+                  ? " rgb(249 115 22)"
+                  : "rgb(34 197 94)",
             }}
           >
             <div className="absolute -left-7 -top-10 hidden items-center justify-center rounded-lg border border-[#797a7c72] bg-white px-4 py-1 not-italic text-[#70757e] shadow-lg group-hover:flex">
