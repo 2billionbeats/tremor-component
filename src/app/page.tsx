@@ -1,6 +1,6 @@
 "use client";
 
-import { DoubleLimitBar } from "@/components/Bar/";
+import { DoubleLimitBar, SingleLimitBar } from "@/components/Bar";
 import { Card } from "@tremor/react";
 import { ChangeEventHandler, useState } from "react";
 import { read, utils } from "xlsx";
@@ -40,8 +40,6 @@ export default function Home() {
     reader.readAsArrayBuffer(file);
   };
 
-  console.log(jsonData);
-
   return (
     <>
       <input type="file" onChange={handleFileUpload} />
@@ -51,31 +49,69 @@ export default function Home() {
             (
               jsonData as {
                 indicator_name: string;
-                result_value: number;
+                result_value: number | undefined;
                 unit: string;
-                reference_value: string;
+                reference_value: string | undefined;
               }[]
-            ).map((item, index) => (
-              <Card key={index}>
-                <div className="flex justify-between pb-5 text-lg text-black">
-                  <p className="font-bold">{item.indicator_name}</p>
-                  <p className="font-bold">
-                    {item.result_value}
-                    <span className="pl-1 font-light">
-                      {item.unit} {item.reference_value}
-                    </span>
-                  </p>
-                </div>
+            ).map((item, index) => {
+              let [min, max]: (null | number)[] = [null, null];
 
-                <DoubleLimitBar
-                  max={9.5}
-                  min={3.5}
-                  cursor={0.1}
-                  precision={1}
-                  className="px-4"
-                />
-              </Card>
-            ))}
+              const limitArray = item.reference_value
+                ?.match(/[\d|\.]+/g)
+                ?.slice(0, 2)
+                .map(Number);
+
+              if (!Array.isArray(limitArray)) return;
+              if (limitArray.length === 2) {
+                [min, max] = limitArray;
+              } else if (limitArray.length === 1) {
+                if (
+                  item.reference_value?.includes("＜") ||
+                  item.reference_value?.includes("＜")
+                ) {
+                  max = limitArray[0];
+                }
+
+                if (
+                  item.reference_value?.includes("＞") ||
+                  item.reference_value?.includes("≥")
+                ) {
+                  min = limitArray[0];
+                }
+              }
+
+              console.log(min, max);
+
+              if (item.result_value && (min || max)) {
+                return (
+                  <Card key={index}>
+                    <div className="flex justify-between pb-5 text-lg text-black">
+                      <p className="font-bold">{item.indicator_name}</p>
+                      <p className="font-bold">
+                        {item.result_value}
+                        <span className="pl-1 font-light">{item.unit}</span>
+                      </p>
+                    </div>
+
+                    {min && max ? (
+                      <DoubleLimitBar
+                        max={max}
+                        min={min}
+                        cursor={item.result_value}
+                        precision={1}
+                        className="px-4"
+                      />
+                    ) : (
+                      <SingleLimitBar
+                        min={min!}
+                        max={max!}
+                        cursor={item.result_value}
+                      />
+                    )}
+                  </Card>
+                );
+              }
+            })}
         </div>
       </div>
     </>
